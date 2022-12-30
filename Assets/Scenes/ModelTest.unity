@@ -745,14 +745,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664b78737980dd548a885246513b84af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axe: []
-  hammer: []
+  axe:
+  - {fileID: 6544352588477718097, guid: 09f44896e1a5f8a42801c935b31934d7, type: 3}
+  - {fileID: 3494203836007816659, guid: 952966a8f5030944f82f3f3ca8ed017b, type: 3}
+  - {fileID: 2217322925784557197, guid: 5ca0c85b75ca464479dec48cab9b04d3, type: 3}
+  - {fileID: 369713527410585231, guid: f20c7c0e79f75d445910700cca020199, type: 3}
+  hammer:
+  - {fileID: 2646810956573745588, guid: 9e73b96d43c857349a0bdfb7c3e1c16e, type: 3}
   sword:
   - {fileID: 5053768790742341223, guid: c0587d47529ac3b49a6bef572956125e, type: 3}
   - {fileID: 1681363739910522015, guid: 490ae07fd4786c341a16f35d7d0d2144, type: 3}
   - {fileID: 4098066455722473841, guid: 433c8b1f082a4cd44bdf0590cf144a7d, type: 3}
   - {fileID: 2965805984925723702, guid: 3636eee42a2f1824e99dbcc06ff64081, type: 3}
   - {fileID: 2836694511948939244, guid: 471ab3e600572854191b5d15d3fac154, type: 3}
+  numberAxe: 10
+  numberHammer: 5
+  numberSword: 10
   generateWeaponsRangeStartPoint: {fileID: 130232953}
   generateWeaponsRangeEndPoint: {fileID: 993110087}
 --- !u!1001 &1600225504
