@@ -36,17 +36,6 @@ public class Test : MonoBehaviour {
         GenerateWeapons(numberAxe, axe);
         GenerateWeapons(numberHammer, hammer);
         GenerateWeapons(numberSword, sword);
-
-        // while (true) {
-        //     (Vector3 position, bool exist) = generateWeaponsRange.RandomPosition();
-        //     if (!exist) break;
-
-        //     Instantiate(
-        //         sword[Random.Range(0, sword.Length)],
-        //         position + Vector3.up,
-        //         Quaternion.Euler(90f, 0f, 0f)
-        //     );
-        // }
     }
 
     private void Update() {
