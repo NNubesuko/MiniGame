@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMain : PlayerImpl {
 
+    [SerializeField, Header("Game Adminstrator")] private GameAdminMain gameAdmin;
+
+    [Header("Player Status")]
     [SerializeField] private int hp;
     [SerializeField] private float stamina;
     [SerializeField] private float moveSpeed;
@@ -18,12 +21,19 @@ public class PlayerMain : PlayerImpl {
             moveSpeed,
             runSpeed,
             evasionSpeed,
-            evasionDistance
+            evasionDistance,
+            gameAdmin.PlayerCamera.GetComponent<CameraMain>()
         );
     }
 
     private void Update() {
-        Move();
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            Run();
+        } else {
+            Move();
+        }
+        
+        Rotate();
         Death();
     }
 

@@ -11,13 +11,17 @@ public class PlayerImpl : MonoBehaviour, Player {
     public float EvasionSpeed { get; private set; }
     public float EvasionDistance { get; private set; }
 
+    private Camera cameraScript;
+    private Vector3 currentPosition;
+
     public void Init(
         int hp,
         float stamina,
         float moveSpeed,
         float runSpeed,
         float evasionSpeed,
-        float evasionDistance
+        float evasionDistance,
+        Camera cameraScript
     ) {
         this.HP = hp;
         this.Stamina = stamina;
@@ -25,9 +29,25 @@ public class PlayerImpl : MonoBehaviour, Player {
         this.RunSpeed = runSpeed;
         this.EvasionSpeed = evasionSpeed;
         this.EvasionDistance = evasionDistance;
+        this.cameraScript = cameraScript;
     }
 
     public void Move() {
+        Move(MoveSpeed);
+    }
+
+    public void Run() {
+        Move(RunSpeed);
+    }
+
+    public void Rotate() {
+        if (currentPosition == Vector3.zero) return;
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            Quaternion.LookRotation(cameraScript.HorizontalRotation * currentPosition),
+            0.1f
+        );
     }
 
     public void Damage(int ap) {
@@ -43,6 +63,15 @@ public class PlayerImpl : MonoBehaviour, Player {
         if (HP == 0) {
             Debug.Log("ﾀﾋ");
         }
+    }
+
+    private void Move(float speed) {
+        currentPosition = Vector3.zero;
+        
+        currentPosition += new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        currentPosition = currentPosition.normalized * speed * Time.deltaTime;
+
+        transform.position += cameraScript.HorizontalRotation * currentPosition;
     }
 
 }
