@@ -1,8 +1,6 @@
-public interface Player : IMovable, IDamagable {
+public interface Player {
 
-    int HP { get; }
     float Stamina { get; }
-    float MoveSpeed { get; }
     float RunSpeed { get; }
     float EvasionSpeed { get; }
     float EvasionDistance { get; }

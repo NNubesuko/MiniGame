@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyImpl : MonoBehaviour, Enemy {
-
-    public int HP { get; private set; }
-    public float MoveSpeed { get; private set; }
+public class EnemyImpl : Character, Enemy {
 
     public void Init(
         int hp,
@@ -15,7 +12,7 @@ public class EnemyImpl : MonoBehaviour, Enemy {
         MoveSpeed = moveSpeed;
     }
 
-    public void Move() {
+    public override void Move() {
         // プレイヤーに近い場合
             // 手元の武器で攻撃
 
@@ -24,15 +21,7 @@ public class EnemyImpl : MonoBehaviour, Enemy {
             // ワープする -> プレイヤーに近い場合につながる
     }
 
-    public void Damage(int ap) {
-        HP -= ap;
-
-        if (HP < 0) {
-            HP = 0;
-        }
-    }
-
-    public void Death() {
+    public override void Death() {
         if (HP == 0) {
             Debug.Log("ﾀﾋ");
         }

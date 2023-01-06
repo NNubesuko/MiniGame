@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerImpl : MonoBehaviour, Player {
+public class PlayerImpl : Character, Player {
 
-    public int HP { get; private set; }
     public float Stamina { get; private set; }
-    public float MoveSpeed { get; private set; }
     public float RunSpeed { get; private set; }
     public float EvasionSpeed { get; private set; }
     public float EvasionDistance { get; private set; }
+
+    private const float MaxStamina = 100f;
+    private const float MinStamina = 0f;
 
     private Camera cameraScript;
     private Vector3 currentPosition;
@@ -32,12 +33,20 @@ public class PlayerImpl : MonoBehaviour, Player {
         this.cameraScript = cameraScript;
     }
 
-    public void Move() {
+    public override void Move() {
         Move(MoveSpeed);
     }
 
     public void Run() {
         Move(RunSpeed);
+    }
+
+    public void IncrementStamina() {
+        Stamina = Mathf.Min(Stamina + Time.deltaTime, MaxStamina);
+    }
+
+    public void DecrementStamina() {
+        Stamina = Mathf.Max(Stamina - Time.deltaTime, MinStamina);
     }
 
     public void Rotate() {
@@ -50,16 +59,7 @@ public class PlayerImpl : MonoBehaviour, Player {
         );
     }
 
-    public void Damage(int ap) {
-        HP -= ap;
-
-        // 体力が0より小さくならないように制御
-        if (HP < 0) {
-            HP = 0;
-        }
-    }
-
-    public void Death() {
+    public override void Death() {
         if (HP == 0) {
             Debug.Log("ﾀﾋ");
         }

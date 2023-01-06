@@ -29,8 +29,8 @@ public class WeaponMain : WeaponImpl {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.CompareTag("Player")) {
-            IDamagable damagable = collider.GetComponent<PlayerMain>();
-            Attack(damagable);
+            IDamageable damageable = collider.GetComponent<PlayerMain>();
+            Attack(damageable);
         }
     }
 

@@ -46,8 +46,8 @@ public class WeaponImpl : MonoBehaviour, Weapon {
         transform.position = position;
     }
 
-    public void Attack(IDamagable damagable) {
-        damagable.Damage(AP);
+    public void Attack(IDamageable damageable) {
+        damageable.Damage(AP);
     }
 
     public void Rotate() {

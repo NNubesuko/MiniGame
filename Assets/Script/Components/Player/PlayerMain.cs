@@ -29,10 +29,12 @@ public class PlayerMain : PlayerImpl {
     private void Update() {
         if (Input.GetKey(KeyCode.LeftShift)) {
             Run();
+            DecrementStamina();
         } else {
             Move();
+            IncrementStamina();
         }
-        
+
         Rotate();
         Death();
     }

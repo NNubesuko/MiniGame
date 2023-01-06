@@ -1,7 +1,4 @@
-public interface Enemy : IMovable, IDamagable {
-
-    int HP { get; }
-    float MoveSpeed { get; }
+public interface Enemy {
 
     void Init(
         int hp,

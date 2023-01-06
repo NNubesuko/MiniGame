@@ -1,5 +1,5 @@
 public interface IAttackable {
 
-    void Attack(IDamagable damagable);
+    void Attack(IDamageable damageable);
 
 }
