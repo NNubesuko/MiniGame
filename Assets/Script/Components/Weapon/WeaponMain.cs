@@ -8,13 +8,15 @@ public class WeaponMain : WeaponImpl {
     [SerializeField] private GameAdminMain gameAdmin;
 
     [SerializeField] private int ap;
+    [SerializeField] private float initMoveSpeed;
     [SerializeField] private float period;
     [SerializeField] private Vector3 moveSpeed;
     [SerializeField] private float rotateMagnification;
 
-    private void Awake() {
+    private void Start() {
         Init(
             ap,
+            initMoveSpeed,
             period,
             moveSpeed,
             rotateMagnification,
