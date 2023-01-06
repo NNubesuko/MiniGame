@@ -7,6 +7,7 @@ public interface Player {
 
     void Init(
         int hp,
+        int maxHP,
         float stamina,
         float moveSpeed,
         float runSpeed,

@@ -17,6 +17,7 @@ public class PlayerImpl : Character, Player {
 
     public void Init(
         int hp,
+        int maxHP,
         float stamina,
         float moveSpeed,
         float runSpeed,
@@ -25,6 +26,7 @@ public class PlayerImpl : Character, Player {
         Camera cameraScript
     ) {
         this.HP = hp;
+        this.MaxHP = maxHP;
         this.Stamina = stamina;
         this.MoveSpeed = moveSpeed;
         this.RunSpeed = runSpeed;
@@ -35,6 +37,12 @@ public class PlayerImpl : Character, Player {
 
     public override void Move() {
         Move(MoveSpeed);
+    }
+
+    public override void Death() {
+        if (HP == 0) {
+            Debug.Log("ﾀﾋ");
+        }
     }
 
     public void Run() {
@@ -57,12 +65,6 @@ public class PlayerImpl : Character, Player {
             Quaternion.LookRotation(cameraScript.HorizontalRotation * currentPosition),
             0.1f
         );
-    }
-
-    public override void Death() {
-        if (HP == 0) {
-            Debug.Log("ﾀﾋ");
-        }
     }
 
     private void Move(float speed) {

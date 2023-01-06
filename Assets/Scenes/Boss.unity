@@ -2392,7 +2392,7 @@ PrefabInstance:
     - target: {fileID: 5053768790742341223, guid: c0587d47529ac3b49a6bef572956125e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5059389762411275237, guid: c0587d47529ac3b49a6bef572956125e,
         type: 3}
@@ -2698,6 +2698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameAdmin: {fileID: 928188994}
   hp: 100
+  maxHP: 100
   stamina: 100
   moveSpeed: 3
   runSpeed: 10

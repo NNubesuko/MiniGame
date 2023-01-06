@@ -8,6 +8,7 @@ public class PlayerMain : PlayerImpl {
 
     [Header("Player Status")]
     [SerializeField] private int hp;
+    [SerializeField] private int maxHP;
     [SerializeField] private float stamina;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed;
@@ -17,6 +18,7 @@ public class PlayerMain : PlayerImpl {
     private void Awake() {
         Init(
             hp,
+            maxHP,
             stamina,
             moveSpeed,
             runSpeed,
