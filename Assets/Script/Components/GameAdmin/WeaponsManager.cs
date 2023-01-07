@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour {
+public class WeaponsManager : MonoBehaviour {
 
     [Header("各武器のゲームオブジェクト")]
     [SerializeField] private GameObject[] axe;
@@ -14,8 +14,14 @@ public class Test : MonoBehaviour {
     [SerializeField] private float numberHammer;
     [SerializeField] private float numberSword;
 
+    [Header("生成する位置")]
     [SerializeField] private GameObject generateWeaponsRangeStartPoint;
     [SerializeField] private GameObject generateWeaponsRangeEndPoint;
+    [SerializeField] private float height;
+
+    public List<GameObject> axeList = new List<GameObject>();
+    public List<GameObject> hammerList = new List<GameObject>();
+    public List<GameObject> swordList = new List<GameObject>();
 
     private RectRange generateWeaponsRange;
     private Vector3[] weaponsPositionArray;
@@ -30,25 +36,32 @@ public class Test : MonoBehaviour {
         // 四角形の範囲クラスを初期化
         generateWeaponsRange = new RectRange(
             new Vector2(generateWeaponsRangeStart.x, generateWeaponsRangeStart.z),
-            new Vector2(generateWeaponsRangeEnd.x, generateWeaponsRangeEnd.z)
+            new Vector2(generateWeaponsRangeEnd.x, generateWeaponsRangeEnd.z),
+            height
         );
 
-        GenerateWeapons(numberAxe, axe);
-        GenerateWeapons(numberHammer, hammer);
-        GenerateWeapons(numberSword, sword);
+        axeList = GenerateWeapons(numberAxe, axe);
+        hammerList = GenerateWeapons(numberHammer, hammer);
+        swordList = GenerateWeapons(numberSword, sword);
     }
 
-    private void Update() {
-    }
+    private List<GameObject> GenerateWeapons(float number, GameObject[] gameObjects) {
+        List<GameObject> list = new List<GameObject>();
 
-    private void GenerateWeapons(float number, GameObject[] gameObjects) {
         for (int i = 0; i < number; i++) {
+            // 返せる位置がある場合は、位置とtrueの2つの値が返却される
+            // 返せる位置が無い場合は、デフォルト値とfalseの2つの値が返却される
             (Vector3 position, bool exist) = generateWeaponsRange.RandomPosition();
             if (!exist) break;
 
+            // 武器のオブジェクトが格納されている配列から、ランダムに武器を選択する
             GameObject gameObject = gameObjects[Random.Range(0, gameObjects.Length)];
-            Instantiate(gameObject, position + Vector3.up, Quaternion.Euler(90f, 0f, 0f));
+            GameObject generatedWeapon =
+                Instantiate(gameObject, position + Vector3.up, Quaternion.Euler(90f, 0f, 0f));
+            list.Add(generatedWeapon);
         }
+
+        return list;
     }
 
 }

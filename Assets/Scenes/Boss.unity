@@ -1622,103 +1622,6 @@ Transform:
   m_Father: {fileID: 114550570}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &812398106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 812398110}
-  - component: {fileID: 812398109}
-  - component: {fileID: 812398108}
-  - component: {fileID: 812398107}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &812398107
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812398106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &812398108
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812398106}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &812398109
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812398106}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &812398110
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812398106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.44, y: 2.47, z: 17.41}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &883398537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1888,8 +1791,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928188992}
-  - component: {fileID: 928188993}
   - component: {fileID: 928188994}
+  - component: {fileID: 928188995}
   m_Layer: 0
   m_Name: GameAdmin
   m_TagString: Untagged
@@ -1912,36 +1815,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &928188993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928188991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664b78737980dd548a885246513b84af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axe:
-  - {fileID: 6544352588477718097, guid: 09f44896e1a5f8a42801c935b31934d7, type: 3}
-  - {fileID: 3494203836007816659, guid: 952966a8f5030944f82f3f3ca8ed017b, type: 3}
-  - {fileID: 2217322925784557197, guid: 5ca0c85b75ca464479dec48cab9b04d3, type: 3}
-  - {fileID: 369713527410585231, guid: f20c7c0e79f75d445910700cca020199, type: 3}
-  hammer:
-  - {fileID: 2646810956573745588, guid: 9e73b96d43c857349a0bdfb7c3e1c16e, type: 3}
-  sword:
-  - {fileID: 5053768790742341223, guid: c0587d47529ac3b49a6bef572956125e, type: 3}
-  - {fileID: 1681363739910522015, guid: 490ae07fd4786c341a16f35d7d0d2144, type: 3}
-  - {fileID: 4098066455722473841, guid: 433c8b1f082a4cd44bdf0590cf144a7d, type: 3}
-  - {fileID: 2965805984925723702, guid: 3636eee42a2f1824e99dbcc06ff64081, type: 3}
-  - {fileID: 2836694511948939244, guid: 471ab3e600572854191b5d15d3fac154, type: 3}
-  numberAxe: 10
-  numberHammer: 5
-  numberSword: 10
-  generateWeaponsRangeStartPoint: {fileID: 1955540429}
-  generateWeaponsRangeEndPoint: {fileID: 931413491}
 --- !u!114 &928188994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,9 +1827,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fe3bba3216fd246a9d4262923df4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponMain: {fileID: 1250987287}
   playerObject: {fileID: 1278455511}
   playerCamera: {fileID: 110693130}
+--- !u!114 &928188995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928188991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7906e116db4611347b2ebe93f0e612b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axe:
+  - {fileID: 6544352588477718097, guid: 09f44896e1a5f8a42801c935b31934d7, type: 3}
+  - {fileID: 3494203836007816659, guid: 952966a8f5030944f82f3f3ca8ed017b, type: 3}
+  - {fileID: 2217322925784557197, guid: 5ca0c85b75ca464479dec48cab9b04d3, type: 3}
+  - {fileID: 369713527410585231, guid: f20c7c0e79f75d445910700cca020199, type: 3}
+  - {fileID: 7683066436643870026, guid: 6809be11309c30b448686b439e40ec73, type: 3}
+  - {fileID: 2305402629234014404, guid: 5dea26deb61d00341b03eeb3a51c5b91, type: 3}
+  - {fileID: 8995323848366384514, guid: f2885f51e9787e4419ba01a4ee991324, type: 3}
+  - {fileID: 7980370704376086230, guid: 60a5eaf5d712e6c459a6c70fda6caee4, type: 3}
+  - {fileID: 3665735814557935906, guid: 9a03be699f3aa0641a6a8f8f35ca1841, type: 3}
+  hammer:
+  - {fileID: 2646810956573745588, guid: 9e73b96d43c857349a0bdfb7c3e1c16e, type: 3}
+  sword:
+  - {fileID: 5053768790742341223, guid: c0587d47529ac3b49a6bef572956125e, type: 3}
+  - {fileID: 1681363739910522015, guid: 490ae07fd4786c341a16f35d7d0d2144, type: 3}
+  - {fileID: 5301917106979433910, guid: 0268e98dc4c4c3f41977bba90224c7b1, type: 3}
+  - {fileID: 6902825956189427423, guid: 6499ea9507cf8ee45bf0779e371c3de8, type: 3}
+  - {fileID: 6017578523615534703, guid: 0bea88f52ece2be4295ea9c2ed0803e7, type: 3}
+  - {fileID: 4949571494816090649, guid: c53e73b81b7e99d4ca69fde22d9b5f1e, type: 3}
+  - {fileID: 2659925605343416990, guid: 9f03fa00771e15348b62bd101145e99c, type: 3}
+  - {fileID: 6665893267503394218, guid: bd295957ebb587b48bf50852ccc3b1dc, type: 3}
+  - {fileID: 5071360807993923182, guid: b0cb8e8ccd81e324388dbfe56cdf6fd0, type: 3}
+  - {fileID: 6335375344054472207, guid: 6dfb396568b5d5942826a4b4a20d3806, type: 3}
+  numberAxe: 10
+  numberHammer: 5
+  numberSword: 10
+  generateWeaponsRangeStartPoint: {fileID: 1955540429}
+  generateWeaponsRangeEndPoint: {fileID: 931413491}
+  height: -0.3
 --- !u!1 &931413491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,7 +2378,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250987286}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6beb0a89ea5384180c7721d8f28a2d, type: 3}
   m_Name: 

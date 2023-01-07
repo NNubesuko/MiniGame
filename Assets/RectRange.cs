@@ -16,27 +16,32 @@ public class RectRange {
         float startX,
         float startY,
         float endX,
-        float endY
+        float endY,
+        float height
     ) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
 
-        InitList(startX, startY, endX, endY);
+        InitList(startX, startY, endX, endY, height);
     }
 
-    public RectRange(Vector2 start, Vector2 end) : this(start.x, start.y, end.x, end.y) {
+    public RectRange(
+        Vector2 start,
+        Vector2 end,
+        float height = 0f
+    ) : this(start.x, start.y, end.x, end.y, height) {
     }
 
     public override string ToString() {
         return $"({startX}, {startY}) ~ ({endX}, {endY})";
     }
 
-    private void InitList(float startX, float startY, float endX, float endY) {
+    private void InitList(float startX, float startY, float endX, float endY, float height = 0f) {
         for (float x = startX; x <= endX; x+=1) {
             for (float z = startY; z <= endY; z+=1) {
-                list.Add(new Vector3(x, 0f, z));
+                list.Add(new Vector3(x, height, z));
             }
         }
     }
