@@ -19,9 +19,9 @@ public class WeaponsManager : MonoBehaviour {
     [SerializeField] private GameObject generateWeaponsRangeEndPoint;
     [SerializeField] private float height;
 
-    public List<GameObject> axeList = new List<GameObject>();
-    public List<GameObject> hammerList = new List<GameObject>();
-    public List<GameObject> swordList = new List<GameObject>();
+    public List<GameObject> AxeList { get; private set; } = new List<GameObject>();
+    public List<GameObject> HammerList { get; private set; } = new List<GameObject>();
+    public List<GameObject> SwordList { get; private set; }  = new List<GameObject>();
 
     private RectRange generateWeaponsRange;
     private Vector3[] weaponsPositionArray;
@@ -40,9 +40,9 @@ public class WeaponsManager : MonoBehaviour {
             height
         );
 
-        axeList = GenerateWeapons(numberAxe, axe);
-        hammerList = GenerateWeapons(numberHammer, hammer);
-        swordList = GenerateWeapons(numberSword, sword);
+        AxeList = GenerateWeapons(numberAxe, axe);
+        HammerList = GenerateWeapons(numberHammer, hammer);
+        SwordList = GenerateWeapons(numberSword, sword);
     }
 
     private List<GameObject> GenerateWeapons(float number, GameObject[] gameObjects) {

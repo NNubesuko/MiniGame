@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class EnemyImpl : Character, Enemy {
 
+    public float LongDistanceAttackCoolTime { get; private set; }
+
+    private bool hasEndedLongDistanceAttack = false;
+    private bool isAssailableLongDistance = true;
+
     public void Init(
         int hp,
-        float moveSpeed
+        float moveSpeed,
+        float longDistanceAttackCoolTime
     ) {
         HP = hp;
         MoveSpeed = moveSpeed;
+        LongDistanceAttackCoolTime = longDistanceAttackCoolTime;
     }
 
     public override void Move() {
@@ -25,6 +32,21 @@ public class EnemyImpl : Character, Enemy {
         if (HP == 0) {
             Debug.Log("ﾀﾋ");
         }
+    }
+
+    /*
+     * クールタイムを管理する
+     */
+    public void CoolTimeManagement() {
+        if (hasEndedLongDistanceAttack) {
+            hasEndedLongDistanceAttack = false;
+            StartCoroutine(CoolUpLongDistanceAttack());
+        }
+    }
+
+    private IEnumerator CoolUpLongDistanceAttack() {
+        yield return new WaitForSeconds(LongDistanceAttackCoolTime);
+        isAssailableLongDistance = true;
     }
 
 }
