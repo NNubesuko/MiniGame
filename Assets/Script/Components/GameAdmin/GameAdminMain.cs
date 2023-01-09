@@ -10,10 +10,14 @@ public class GameAdminMain : MonoBehaviour {
 
     public GameObject PlayerObject { get; private set; }
     public GameObject PlayerCamera { get; private set; }
+    
+    public WeaponsManager WeaponsManager { get; private set; }
 
     private void Awake() {
         PlayerObject = playerObject;
         PlayerCamera = playerCamera;
+
+        WeaponsManager = GetComponent<WeaponsManager>();
     }
 
     private void Update() {

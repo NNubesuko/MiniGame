@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType {
+    Axe = 0,
+    Hammer = 1,
+    Sword = 2
+}
+
 public class WeaponsManager : MonoBehaviour {
 
     [Header("各武器のゲームオブジェクト")]
@@ -18,6 +24,8 @@ public class WeaponsManager : MonoBehaviour {
     [SerializeField] private GameObject generateWeaponsRangeStartPoint;
     [SerializeField] private GameObject generateWeaponsRangeEndPoint;
     [SerializeField] private float height;
+
+    public int WeaponTypeNumber => System.Enum.GetValues(typeof(WeaponType)).Length;
 
     public List<GameObject> AxeList { get; private set; } = new List<GameObject>();
     public List<GameObject> HammerList { get; private set; } = new List<GameObject>();

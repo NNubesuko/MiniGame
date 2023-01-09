@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using KaoNubeLib.System;
 
 public class WeaponMain : WeaponImpl {
 
-    [SerializeField] private GameAdminMain gameAdmin;
+    private GameAdminMain gameAdmin;
 
     [SerializeField] private int ap;
     [SerializeField] private float initMoveSpeed;
     [SerializeField] private float period;
     [SerializeField] private Vector3 moveSpeed;
     [SerializeField] private float rotateMagnification;
+
+    private void Awake() {
+        gameAdmin = GameObject.FindGameObjectWithTag("GameAdmin").GetComponent<GameAdminMain>();
+    }
 
     private void Start() {
         Init(
