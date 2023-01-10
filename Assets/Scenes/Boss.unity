@@ -4112,6 +4112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3373922580814399980, guid: 35153dea0474b0a469edd08bfa15933b,
         type: 3}
+      propertyPath: numberHammer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373922580814399980, guid: 35153dea0474b0a469edd08bfa15933b,
+        type: 3}
       propertyPath: axe.Array.data[0]
       value: 
       objectReference: {fileID: 2571589447369190164, guid: f6533918d78172e478c0fdb08d7618fa,

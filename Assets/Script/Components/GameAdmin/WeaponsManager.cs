@@ -27,9 +27,9 @@ public class WeaponsManager : MonoBehaviour {
 
     public int WeaponTypeNumber => System.Enum.GetValues(typeof(WeaponType)).Length;
 
-    public List<GameObject> AxeList { get; private set; } = new List<GameObject>();
-    public List<GameObject> HammerList { get; private set; } = new List<GameObject>();
-    public List<GameObject> SwordList { get; private set; }  = new List<GameObject>();
+    public List<WeaponMain> AxeList { get; private set; } = new List<WeaponMain>();
+    public List<WeaponMain> HammerList { get; private set; } = new List<WeaponMain>();
+    public List<WeaponMain> SwordList { get; private set; }  = new List<WeaponMain>();
 
     private RectRange generateWeaponsRange;
     private Vector3[] weaponsPositionArray;
@@ -53,8 +53,8 @@ public class WeaponsManager : MonoBehaviour {
         SwordList = GenerateWeapons(numberSword, sword);
     }
 
-    private List<GameObject> GenerateWeapons(float number, GameObject[] gameObjects) {
-        List<GameObject> list = new List<GameObject>();
+    private List<WeaponMain> GenerateWeapons(float number, GameObject[] gameObjects) {
+        List<WeaponMain> list = new List<WeaponMain>();
 
         for (int i = 0; i < number; i++) {
             // 返せる位置がある場合は、位置とtrueの2つの値が返却される
@@ -64,12 +64,53 @@ public class WeaponsManager : MonoBehaviour {
 
             // 武器のオブジェクトが格納されている配列から、ランダムに武器を選択する
             GameObject gameObject = gameObjects[Random.Range(0, gameObjects.Length)];
-            GameObject generatedWeapon =
+            GameObject generatedWeaponObject =
                 Instantiate(gameObject, position + Vector3.up, Quaternion.Euler(90f, 0f, 0f));
-            list.Add(generatedWeapon);
+
+            list.Add(generatedWeaponObject.GetComponent<WeaponMain>());
         }
 
         return list;
+    }
+
+    public void ActivateWeapon(WeaponType weaponType, int weaponNumber) {
+        switch (weaponType) {
+            case WeaponType.Axe:
+                Debug.Log("Axe");
+                ActivateAxe(weaponNumber);
+                break;
+            case WeaponType.Hammer:
+                Debug.Log("Hammer");
+                // HammerAttack();
+                break;
+            case WeaponType.Sword:
+                Debug.Log("Sword");
+                // SwordAttack();
+                break;
+        }
+    }
+
+    private void ActivateAxe(int weaponNumber) {
+        if (AxeList.Count == 0) return;
+
+        ActivateWeapon(AxeList, weaponNumber);
+    }
+
+    private void ActivateWeapon(List<WeaponMain> list, int weaponNumber) {
+        WeaponMain[] weapons = new WeaponMain[weaponNumber];
+
+        for (int i = 0; i < weapons.Length; i++) {
+            weapons[i] = list[i];
+            weapons[i].enabled = true;
+        }
+
+        RemoveActiveWeaponFromList(list, weapons);
+    }
+
+    private void RemoveActiveWeaponFromList(List<WeaponMain> list, WeaponMain[] arr) {
+        for (int i = 0; i < arr.Length; i++) {
+            list.Remove(arr[i]);
+        }
     }
 
 }

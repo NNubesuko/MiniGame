@@ -4,5 +4,4 @@ using UnityEngine;
 using KaoNubeLib.System;
 
 public class Test : MonoBehaviour {
-
 }

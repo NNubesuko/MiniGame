@@ -16,12 +16,9 @@ public class EnemyImpl : Character, Enemy {
     public EnemyState State { get; private set; }
 
     public float LongAttackCoolTime { get; private set; }
+    protected WeaponsManager weaponsManager;
     public CoolUp LongAttackCoolUp { get; private set; }
     private bool isAssailableLong = true;
-
-    protected List<GameObject> AxeList;
-    protected List<GameObject> HammerList;
-    protected List<GameObject> SwordList;
 
     public void Init(
         int hp,
@@ -68,7 +65,7 @@ public class EnemyImpl : Character, Enemy {
                 EnemyStateChase(targetTransform);
                 break;
             case EnemyState.LongAttack:
-                EnemyStateLongAttack(targetTransform);
+                EnemyStateLongAttack();
                 break;
         }
     }
@@ -101,8 +98,23 @@ public class EnemyImpl : Character, Enemy {
     /*
      * 敵の状態が遠距離攻撃状態の場合
      */
-    public void EnemyStateLongAttack(Transform targetTransform) {
+    public void EnemyStateLongAttack() {
         // 遠距離攻撃をする
+        int weaponTypeNumber = Random.Range(0, weaponsManager.WeaponTypeNumber);
+        WeaponType weaponType = (WeaponType)weaponTypeNumber;
+        Debug.Log(weaponType);
+
+        switch (weaponType) {
+            case WeaponType.Axe:
+                weaponsManager.ActivateWeapon(weaponType, 2);
+                break;
+            case WeaponType.Hammer:
+                weaponsManager.ActivateWeapon(weaponType, 2);
+                break;
+            case WeaponType.Sword:
+                weaponsManager.ActivateWeapon(weaponType, 2);
+                break;
+        }
     }
 
     /*
