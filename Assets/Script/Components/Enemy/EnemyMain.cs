@@ -44,6 +44,11 @@ public class EnemyMain : EnemyImpl {
     }
 
     private void Update() {
+        MoveManager();
+        Rotate();
+    }
+
+    private void MoveManager() {
         if (currentState != EnemyState.Chase) {
             chase = Mathf.Min(chase + Time.deltaTime / chaseCoolTime, 1);
         }

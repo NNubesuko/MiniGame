@@ -7,6 +7,7 @@ public class EnemyImpl : Character, Enemy {
     public float ChaseDistance { get; private set; }
 
     private Vector3 chaseAddPosition;
+    private Vector3 lastPosition;
 
     public void Init(
         int hp,
@@ -27,6 +28,13 @@ public class EnemyImpl : Character, Enemy {
         }
     }
 
+    public void Rotate() {
+        Vector3 diff = lastPosition - transform.position;
+        if (diff == Vector3.zero) return;
+
+        transform.rotation = Quaternion.LookRotation(diff, Vector3.up);
+    }
+
     /*
      * 敵の状態が停止状態の場合
      */
@@ -41,7 +49,8 @@ public class EnemyImpl : Character, Enemy {
      * 敵の状態が追いかける状態の場合
      */
     public void Chase(Transform targetTransform) {
-        Vector3 targetPosition = targetTransform.position;
+        Vector3 targetPosition = lastPosition = targetTransform.position;
+        // 高さを固定するために自分の高さを格納する
         targetPosition.y = transform.position.y;
 
         transform.position = Vector3.MoveTowards(
