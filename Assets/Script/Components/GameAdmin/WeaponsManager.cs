@@ -29,7 +29,7 @@ public class WeaponsManager : MonoBehaviour {
 
     public List<WeaponMain> AxeList { get; private set; } = new List<WeaponMain>();
     public List<WeaponMain> HammerList { get; private set; } = new List<WeaponMain>();
-    public List<WeaponMain> SwordList { get; private set; }  = new List<WeaponMain>();
+    public List<WeaponMain> SwordList { get; private set; } = new List<WeaponMain>();
 
     private RectRange generateWeaponsRange;
     private Vector3[] weaponsPositionArray;
@@ -76,15 +76,12 @@ public class WeaponsManager : MonoBehaviour {
     public void ActivateWeapon(WeaponType weaponType, int weaponNumber) {
         switch (weaponType) {
             case WeaponType.Axe:
-                Debug.Log("Axe");
                 ActivateAxe(weaponNumber);
                 break;
             case WeaponType.Hammer:
-                Debug.Log("Hammer");
                 ActivateHammer(weaponNumber);
                 break;
             case WeaponType.Sword:
-                Debug.Log("Sword");
                 ActivateSword(weaponNumber);
                 break;
         }
