@@ -81,11 +81,11 @@ public class WeaponsManager : MonoBehaviour {
                 break;
             case WeaponType.Hammer:
                 Debug.Log("Hammer");
-                // HammerAttack();
+                ActivateHammer(weaponNumber);
                 break;
             case WeaponType.Sword:
                 Debug.Log("Sword");
-                // SwordAttack();
+                ActivateSword(weaponNumber);
                 break;
         }
     }
@@ -94,6 +94,18 @@ public class WeaponsManager : MonoBehaviour {
         if (AxeList.Count == 0) return;
 
         ActivateWeapon(AxeList, weaponNumber);
+    }
+
+    private void ActivateHammer(int weaponNumber) {
+        if (HammerList.Count == 0) return;
+
+        ActivateWeapon(HammerList, weaponNumber);
+    }
+
+    private void ActivateSword(int weaponNumber) {
+        if (SwordList.Count == 0) return;
+
+        ActivateWeapon(SwordList, weaponNumber);
     }
 
     private void ActivateWeapon(List<WeaponMain> list, int weaponNumber) {

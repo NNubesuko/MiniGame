@@ -5,33 +5,14 @@ using KaoNubeLib.System;
 
 public class EnemyImpl : Character, Enemy {
 
-    public enum EnemyState {
-        Stop,
-        Chase,
-        ShortAttack,
-        LongAttack,
-        Teleportation
-    }
-
-    public EnemyState State { get; private set; }
-
-    public float LongAttackCoolTime { get; private set; }
     protected WeaponsManager weaponsManager;
-    public CoolUp LongAttackCoolUp { get; private set; }
-    private bool isAssailableLong = true;
 
     public void Init(
         int hp,
-        float moveSpeed,
-        float longAttackCoolTime
+        float moveSpeed
     ) {
         HP = hp;
         MoveSpeed = moveSpeed;
-        LongAttackCoolTime = longAttackCoolTime;
-
-        AsyncTimer longAttackTimer = new AsyncTimer(LongAttackCoolTime);
-        longAttackTimer.AddEvent(ActivateLongAttack);
-        LongAttackCoolUp = new CoolUp(longAttackTimer);
     }
 
     /*
@@ -52,53 +33,22 @@ public class EnemyImpl : Character, Enemy {
         }
     }
 
-    protected void SetState(EnemyState state) {
-        State = state;
-    }
-
-    public void MoveManager(Transform targetTransform = null) {
-        switch (State) {
-            case EnemyState.Stop:
-                EnemyStateStop(targetTransform);
-                break;
-            case EnemyState.Chase:
-                EnemyStateChase(targetTransform);
-                break;
-            case EnemyState.LongAttack:
-                EnemyStateLongAttack();
-                break;
-        }
-    }
-
     /*
      * 敵の状態が停止状態の場合
      */
-    public void EnemyStateStop(Transform targetTransform) {
+    public void Stop(Transform targetTransform) {
     }
 
     /*
      * 敵の状態が追いかける状態の場合
      */
-    public void EnemyStateChase(Transform targetTransform) {
-        // ターゲットが存在しない場合は、追いかけることが出来ないため停止状態に変更して処理を終了する
-        if (!targetTransform) {
-            SetState(EnemyState.Stop);
-            return;
-        }
-
-        // ターゲットが存在する場合は、ターゲットを追いかける
-    }
-
-    /*
-     * 敵の状態が近距離攻撃状態の場合
-     */
-    public void EnemyStateShortAttack() {
+    public void Chase(Transform targetTransform) {
     }
 
     /*
      * 敵の状態が遠距離攻撃状態の場合
      */
-    public void EnemyStateLongAttack() {
+    public void LongAttack() {
         // 遠距離攻撃をする
         int weaponTypeNumber = Random.Range(0, weaponsManager.WeaponTypeNumber);
         WeaponType weaponType = (WeaponType)weaponTypeNumber;
@@ -120,37 +70,7 @@ public class EnemyImpl : Character, Enemy {
     /*
      * 敵の状態が瞬間移動状態の場合
      */
-    public void EnemyStateTeleportation() {
-    }
-
-    /*
-     * 近距離攻撃を可能にする
-     * クールタイム経過後のコールバックで使用する
-     */
-    private void ActivateLongAttack() {
-        isAssailableLong = true;
-    }
-
-}
-
-public class CoolUp {
-
-    private AsyncTimer timer;
-    private bool oneTime = true;
-
-    public CoolUp(AsyncTimer timer) {
-        this.timer = timer;
-    }
-
-    public void Reset() {
-        oneTime = true;
-    }
-
-    public async void Start() {
-        if (oneTime) {
-            oneTime = false;
-            await timer.Start();
-        }
+    public void Teleportation() {
     }
 
 }

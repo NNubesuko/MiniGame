@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyMain : MonoBehaviour {
+public enum EnemyState {
+    Stop,
+    Chase,
+    LongAttack
+}
 
-    enum EnemyState {
-        Stop,
-        Chase,
-        LongAttack
-    }
+public class EnemyMain : EnemyImpl {
+
+    [SerializeField] private GameAdminMain gameAdmin;
+
+    [Header("ステータス")]
+    [SerializeField] private int hp;
+    [SerializeField] private float moveSpeed;
 
     private float chase = 0f;           // 0 ~ 1の間で変動する 0 -> 追いかけない 1 -> 追いかける
     private float chaseCoolTime = 5f;   // クールタイム
@@ -21,6 +27,15 @@ public class EnemyMain : MonoBehaviour {
 
     private EnemyState currentState = EnemyState.Stop;
     private bool stateEnter = true;
+
+    private void Start() {
+        Init(
+            hp,
+            moveSpeed
+        );
+
+        weaponsManager = gameAdmin.WeaponsManager;
+    }
 
     private void Update() {
         if (currentState != EnemyState.Chase) {
@@ -98,30 +113,3 @@ public class EnemyMain : MonoBehaviour {
     }
 
 }
-
-/*
-    [SerializeField] private GameAdminMain gameAdmin;
-
-    [Header("ステータス")]
-    [SerializeField] private int hp;
-    [SerializeField] private float moveSpeed;
-
-    [Header("クールタイム")]
-    [SerializeField] private float longDistanceAttackCoolTime;
-
-    private Transform playerTransform;
-
-    private void Start() {
-        Init(
-            hp,
-            moveSpeed,
-            longDistanceAttackCoolTime
-        );
-
-        playerTransform = gameAdmin.PlayerObject.transform;
-        weaponsManager = gameAdmin.WeaponsManager;
-    }
-
-    private void Update() {
-    }
-*/
