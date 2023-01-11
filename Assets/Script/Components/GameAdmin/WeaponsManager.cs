@@ -48,6 +48,7 @@ public class WeaponsManager : MonoBehaviour {
             height
         );
 
+        // 書く武器の生成
         AxeList = GenerateWeapons(numberAxe, axe);
         HammerList = GenerateWeapons(numberHammer, hammer);
         SwordList = GenerateWeapons(numberSword, sword);

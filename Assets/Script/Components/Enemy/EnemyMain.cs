@@ -9,6 +9,50 @@ public enum EnemyState {
     LongAttack
 }
 
+public class State {
+
+    public EnemyState Type { get; private set; }
+    public float Value { get; set; }
+
+    public State(EnemyState type) {
+        Type = type;
+        Value = 0f;
+    }
+
+}
+
+public class StateManager {
+
+    public List<State> StateList { get; private set; } = new List<State>();
+
+    public StateManager() {
+        int stateNumber = System.Enum.GetNames(typeof(EnemyState)).Length;
+
+        for (int i = 0; i < stateNumber; i++) {
+            StateList.Add(
+                new State( (EnemyState)i )
+            );
+        }
+    }
+
+    public State GetState(EnemyState type) {
+        foreach (State state in StateList) {
+            if (state.Type == type) {
+                return state;
+            }
+        }
+
+        return null;
+    }
+
+    public void SortDescstateManager() {
+        StateList.Sort(
+            (lhState, rhState) => rhState.Value.CompareTo(lhState.Value)
+        );
+    }
+
+}
+
 public class EnemyMain : EnemyImpl {
 
     [SerializeField] private GameAdminMain gameAdmin;
@@ -18,11 +62,11 @@ public class EnemyMain : EnemyImpl {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float chaseDistance;
 
-    private float chase = 0f;           // 0 ~ 1の間で変動する 0 -> 追いかけない 1 -> 追いかける
+    private StateManager stateManager = new StateManager();
+
     private float chaseCoolTime = 5f;   // クールタイム
     private float chaseTime = 3f;       // 追いかけている時間
 
-    private float longAttack = 0f;          // 0 ~ 1の間で変動する 0 -> クールアップが必要 1 -> 遠距離攻撃可能
     private float longAttackCoolTime = 10f; // クールタイム
     private float longAttackTime = 5f;      // 遠距離攻撃している時間
 
@@ -50,11 +94,21 @@ public class EnemyMain : EnemyImpl {
 
     private void MoveManager() {
         if (currentState != EnemyState.Chase) {
-            chase = Mathf.Min(chase + Time.deltaTime / chaseCoolTime, 1);
+            State state = stateManager.GetState(EnemyState.Chase);
+            state.Value =
+                Mathf.Min(
+                    state.Value + Time.deltaTime / chaseCoolTime,
+                    1f
+                );
         }
 
         if (currentState != EnemyState.LongAttack) {
-            longAttack = Mathf.Min(longAttack + Time.deltaTime / longAttackCoolTime, 1);
+            State state = stateManager.GetState(EnemyState.LongAttack);
+            state.Value =
+                Mathf.Min(
+                    state.Value + Time.deltaTime / longAttackCoolTime,
+                    1f
+                );
         }
 
         switch (currentState) {
@@ -80,10 +134,32 @@ public class EnemyMain : EnemyImpl {
         stateEnter = true;
     }
 
+    /*
+     * 停止
+     */
     private void StopEnterAction() {
         Debug.Log("停止");
     }
 
+    private void StopUpdateAction() {
+        stateManager.SortDescstateManager();
+
+        State state = stateManager.StateList[0];
+        if (state.Value != 1f) return;
+
+        switch (state.Type) {
+            case EnemyState.Chase:
+                ChangeState(EnemyState.Chase);
+                break;
+            case EnemyState.LongAttack:
+                ChangeState(EnemyState.LongAttack);
+                break;
+        }
+    }
+
+    /*
+     * 追いかける
+     */
     private void ChaseEnterAction() {
         Debug.Log("追いかける");
         ChangeChaseAddPosition(
@@ -92,42 +168,37 @@ public class EnemyMain : EnemyImpl {
         );
     }
 
+    private void ChaseUpdateAction() {
+        Chase(playerTransform);
+
+        State state = stateManager.GetState(EnemyState.Chase);
+        // 追いかけている時間をカウントする
+        state.Value = Mathf.Max(state.Value - Time.deltaTime / chaseTime, 0f);
+        // 追いかけ終わったら停止状態にする
+        if (state.Value == 0f) {
+            ChangeState(EnemyState.Stop);
+        }
+    }
+
+    /*
+     * 遠距離攻撃
+     */
     private void LongAttackEnterAction() {
         Debug.Log("遠距離攻撃");
         LongAttack(weaponsManager);
     }
 
-    private void StopUpdateAction() {
-        if (chase == 1f) {
-            ChangeState(EnemyState.Chase);
-            return;
-        }
-
-        if (longAttack == 1f) {
-            ChangeState(EnemyState.LongAttack);
-            return; // すぐに変更したステートの行動に移れるように処理を終了する
-        }
-    }
-
-    private void ChaseUpdateAction() {
-        Chase(playerTransform);
-
-        // 追いかけている時間をカウントする
-        chase = Mathf.Max(chase - Time.deltaTime / chaseTime, 0f);
-        // 追いかけ終わったら停止状態にする
-        if (chase == 0f) {
-            ChangeState(EnemyState.Stop);
-        }
-    }
-
     private void LongAttackUpdateAction() {
+        State state = stateManager.GetState(EnemyState.LongAttack);
         // 攻撃している時間をカウントする
-        longAttack = Mathf.Max(longAttack - Time.deltaTime / longAttackTime, 0f);
+        state.Value = Mathf.Max(state.Value - Time.deltaTime / longAttackTime, 0f);
         // 攻撃が終わったら停止状態に遷移する
-        if (longAttack == 0f) {
+        if (state.Value == 0f) {
             ChangeState(EnemyState.Stop);
         }
     }
+
+
 
     /*
      * ステータスに遷移した瞬間に一度だけ実行されるヘルプメソッド
