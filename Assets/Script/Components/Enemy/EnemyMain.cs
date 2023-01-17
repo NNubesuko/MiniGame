@@ -138,6 +138,7 @@ public class EnemyMain : EnemyImpl {
      * 停止
      */
     private void StopEnterAction() {
+        Debug.Log("停止");
     }
 
     private void StopUpdateAction() {
@@ -160,6 +161,7 @@ public class EnemyMain : EnemyImpl {
      * 追いかける
      */
     private void ChaseEnterAction() {
+        Debug.Log("追いかける");
         ChangeChaseAddPosition(
             Mathf.Cos(Random.Range(0f, 1f)),
             Mathf.Sin(Random.Range(0f, 1f))
@@ -182,6 +184,7 @@ public class EnemyMain : EnemyImpl {
      * 遠距離攻撃
      */
     private void LongAttackEnterAction() {
+        Debug.Log("遠距離攻撃");
         LongAttack(weaponsManager);
     }
 

@@ -37,6 +37,8 @@ public class PlayerMain : PlayerImpl {
             IncrementStamina();
         }
 
+        Debug.Log(HP);
+
         Rotate();
         Death();
     }
