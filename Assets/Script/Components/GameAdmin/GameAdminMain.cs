@@ -18,6 +18,8 @@ public class GameAdminMain : MonoBehaviour {
         PlayerCamera = playerCamera;
 
         WeaponsManager = GetComponent<WeaponsManager>();
+
+        GameAdministrator.HiddenCursor();
     }
 
     private void Update() {
