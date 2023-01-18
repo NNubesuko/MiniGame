@@ -4294,7 +4294,7 @@ MonoBehaviour:
   maxHP: 100
   stamina: 100
   moveSpeed: 3
-  runSpeed: 10
+  runSpeed: 6
   evasionSpeed: 30
   evasionDistance: 10
 --- !u!54 &1278455518
